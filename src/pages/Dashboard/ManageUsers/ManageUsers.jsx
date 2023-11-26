@@ -76,7 +76,7 @@ const ManageUsers = () => {
                                     
                                 </td>
                                 <td className="px-6 py-4">
-                                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Normal</a>
+                                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Make Premium</a>
                                 </td>
                             </tr>)
                         }

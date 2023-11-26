@@ -6,19 +6,19 @@ import useAxiosSecure from "./useAxiosSecure";
 import { AuthContext } from "../Providers/AuthProviders";
 
 
-const useAdmin = () => {
+const usePremium = () => {
     const { user } = useContext(AuthContext)
     // console.log(user.email);
     const axiosSecure = useAxiosSecure()
-    const { data: isAdmin, isPending: isAdminLoading } = useQuery({
+    const { data: isPremium, isPending: isPremiumLoading } = useQuery({
         queryKey: [user?.email, 'isAdmin'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users/admin/${user?.email}`);
-            console.log('from admin',res.data);
-            return res.data?.admin
+            const res = await axiosSecure.get(`/biodata/${user?.email}`);
+            console.log('from premium',res.data);
+            return res.data?.status
         }
     })
-    return [isAdmin, isAdminLoading]
+    return [isPremium, isPremiumLoading]
 };
 
-export default useAdmin;
+export default usePremium;

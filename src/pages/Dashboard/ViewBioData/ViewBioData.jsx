@@ -29,7 +29,7 @@ const ViewBioData = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, send it!"
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.patch(`/biodata/admin/${d._id}`)
@@ -40,7 +40,7 @@ const ViewBioData = () => {
                             Swal.fire({
                                 position: "center",
                                 icon: "success",
-                                title: `${d.name} is an Admin now!`,
+                                title: "ok, request send to the admin",
                                 showConfirmButton: false,
                                 timer: 1500
                             });

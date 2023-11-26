@@ -15,7 +15,6 @@ import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import ApprovedPremium from "../pages/Dashboard/ApprovedPremium/ApprovedPremium";
 import ApproveContact from "../pages/Dashboard/ApproveContact/ApproveContact";
 import PrivateRouts from "./PrivateRouts";
-import { Details } from "@mui/icons-material";
 import DetailsData from "../pages/Details/DetailsData";
 
 const router = createBrowserRouter([
@@ -66,7 +65,8 @@ const router = createBrowserRouter([
             },
             {
                 path: 'approve',
-                element: <ApprovedPremium></ApprovedPremium>
+                element: <ApprovedPremium></ApprovedPremium>,
+                loader: ()=>fetch('http://localhost:5000/biodata')
             },
             {
                 path: 'Approve request contact',
