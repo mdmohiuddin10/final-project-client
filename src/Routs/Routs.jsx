@@ -16,6 +16,7 @@ import ApprovedPremium from "../pages/Dashboard/ApprovedPremium/ApprovedPremium"
 import ApproveContact from "../pages/Dashboard/ApproveContact/ApproveContact";
 import PrivateRouts from "./PrivateRouts";
 import DetailsData from "../pages/Details/DetailsData";
+import Checkout from "../pages/Checkout/Checkout";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
             {
                 path: '/details/:id',
                 element: <PrivateRouts><DetailsData></DetailsData></PrivateRouts>,
+                loader: ()=>fetch('http://localhost:5000/biodata')
+            },
+            {
+                path: '/checkout/:id',
+                element: <PrivateRouts><Checkout></Checkout></PrivateRouts>,
                 loader: ()=>fetch('http://localhost:5000/biodata')
             },
             {
