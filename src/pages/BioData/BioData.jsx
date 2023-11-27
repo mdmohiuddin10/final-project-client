@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const BioData = () => {
     const [genderFilter, setGenderFilter] = useState("");
     const [divisionFilter, setDivisionFilter] = useState("");
 
     const allBiodata = useLoaderData();
+    const {user} = useContext(AuthContext)
+    const selectedBiodata = allBiodata.filter(biodata=> biodata.email !== user?.email)
+    // console.log(selectedBiodata);
 
     // Filter data based on selected filters
-    const filteredBiodata = allBiodata.filter((biodata) => {
+    const filteredBiodata = selectedBiodata.filter((biodata) => {
         const genderFilterMatch =
             !genderFilter || biodata.gender.toLowerCase() === genderFilter.toLowerCase();
         const divisionFilterMatch =

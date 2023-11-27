@@ -20,7 +20,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
     const { user, logOut, loading } = useContext(AuthContext)
-    console.log(user?.photoURL);
+    // console.log(user?.photoURL);
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);

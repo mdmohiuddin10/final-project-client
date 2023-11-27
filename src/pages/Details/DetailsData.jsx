@@ -1,8 +1,15 @@
 import { Link, useLoaderData, useParams } from "react-router-dom";
+import usePremium from "../../Hooks/usePremium";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const DetailsData = () => {
     const { id } = useParams()
     const details = useLoaderData()
+    const [isPremium] = usePremium()
+    const axiosSecure = useAxiosSecure()
+
+    // const premium = details.find(d => d.status)
+    // console.log(premium);
 
     // const [isPremium] = usePremium()
     const newData = details.filter(detail => detail._id == id)
@@ -14,6 +21,20 @@ const DetailsData = () => {
     // // Relevant data based on gender
     const relevantData = details.filter((data) => data.gender === gender);
     // console.log('relavent data', relevantData);
+
+    // add data to server(favorute data)
+    const handleAddFavourite = data =>{
+        const favouriteData = {
+            name: data.name,
+            biodataId: data.biodataId,
+            permanentDivision: data.permanentDivision,
+            occupation: data.occupation
+        }
+        console.log(favouriteData);
+        const res = 
+    }
+    
+       
 
 
     return (
@@ -162,7 +183,7 @@ const DetailsData = () => {
                                 </table>
                             </div>
                             {
-                                data.status === 'premium' && <>
+                                isPremium ? <>
                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             Contact Email
@@ -178,15 +199,20 @@ const DetailsData = () => {
                                         <td className="px-6 py-4">
                                             {data.number}
                                         </td>
-                                    </tr></>
+                                    </tr>
+                                    <div>
+
+                                    </div>
+                                    <button onClick={()=>handleAddFavourite(data)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Add to Favourite</button>
+                                </> : <>
+                                    <button disabled type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Add to Favourite</button>
+                                    <Link to={`/checkout/${data._id}`}>
+                                        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Make Request</button>
+                                    </Link>
+                                </>
                             }
 
-                            {data.status === "premium" ?
-                                <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Add to Favourite</button> :
-                                <Link to={`/checkout/${data._id}`}>
-                                    <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Make Request</button>
-                                </Link>
-                            }
+
                         </div>
                     </div>)
                 }
