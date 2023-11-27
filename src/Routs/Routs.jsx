@@ -93,7 +93,8 @@ const router = createBrowserRouter([
             },
             {
                 path: 'favourite data',
-                element: <FavouriteBioData></FavouriteBioData>
+                element: <FavouriteBioData></FavouriteBioData>,
+                loader:  ()=>fetch('http://localhost:5000/biodata')
             },
         ]
     }

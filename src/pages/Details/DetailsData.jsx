@@ -1,6 +1,7 @@
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import usePremium from "../../Hooks/usePremium";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const DetailsData = () => {
     const { id } = useParams()
@@ -23,7 +24,7 @@ const DetailsData = () => {
     // console.log('relavent data', relevantData);
 
     // add data to server(favorute data)
-    const handleAddFavourite = data =>{
+    const handleAddFavourite = async(data) => {
         const favouriteData = {
             name: data.name,
             biodataId: data.biodataId,
@@ -31,11 +32,17 @@ const DetailsData = () => {
             occupation: data.occupation
         }
         console.log(favouriteData);
-        const res = 
+        const res =await axiosSecure.post('/favourite', favouriteData)
+        if (res.data.insertedId) {
+            // reset()
+            Swal.fire({
+                title: "Added!",
+                text: `${data.name} added successfully`,
+                icon: "success",
+                timer: 1500
+            });
+        }
     }
-    
-       
-
 
     return (
         <div className="grid md:grid-cols-2 grid-cols-1">
@@ -203,7 +210,7 @@ const DetailsData = () => {
                                     <div>
 
                                     </div>
-                                    <button onClick={()=>handleAddFavourite(data)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Add to Favourite</button>
+                                    <button onClick={() => handleAddFavourite(data)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Add to Favourite</button>
                                 </> : <>
                                     <button disabled type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Add to Favourite</button>
                                     <Link to={`/checkout/${data._id}`}>
