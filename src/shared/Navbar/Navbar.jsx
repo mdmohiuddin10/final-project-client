@@ -12,10 +12,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 
-const pages = ['/', 'Bio data', 'About Us', 'Contact Us', 'login', 'Sign up'];
+const pages = ['Home', 'Bio data', 'About Us', 'Contact Us', 'login', 'Sign up', 'Dashboard'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
@@ -105,7 +105,15 @@ const Navbar = () => {
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">
-                                        <Link to={`/${page}`}>{page}</Link>
+                                        <NavLink
+                                            to={`/${page}`}
+                                            className={({ isActive, isPending }) =>
+                                                isPending ? "pending" : isActive ? "active" : ""
+                                            }
+                                        >
+                                            {page}
+                                        </NavLink>
+                                        {/* <Link to={`/${page}`}>{page}</Link> */}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -137,7 +145,14 @@ const Navbar = () => {
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                <Link to={`/${page}`}>{page}</Link>
+                                <NavLink
+                                    to={`/${page}`}
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "active" : ""
+                                    }
+                                >
+                                    {page}
+                                </NavLink>;
                             </Button>
                         ))}
                     </Box>
@@ -172,9 +187,9 @@ const Navbar = () => {
                                 <MenuItem key={setting} onClick={setting === 'Logout' ? handleLogout : handleCloseUserMenu}>
                                     {/* // <MenuItem key={setting} onClick={handleCloseUserMenu}> */}
                                     <Typography textAlign="center">
-                                    <Link to={`/${setting}`}>{setting}</Link>
-                                   
-                                        </Typography>
+                                        <Link to={`/${setting}`}>{setting}</Link>
+
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>

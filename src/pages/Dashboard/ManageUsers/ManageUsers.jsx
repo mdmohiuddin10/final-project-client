@@ -15,21 +15,39 @@ const ManageUsers = () => {
         }
     })
 
-    const handleMakeAdmin = user =>{
+    const handleMakeAdmin = user => {
         axiosSecure.patch(`/users/admin/${user._id}`)
-        .then(res=> {
-            console.log(res.data);
-            if(res.data.modifiedCount > 0){
-                refetch()
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: `${user.name} is an Admin now!`,
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-            }
-        })
+            .then(res => {
+                // console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `${user.name} is an Admin now!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
+
+    // working place
+    const handleMakePremium = user => {
+        axiosSecure.patch(`/biodata/${user.email}`)
+            .then(res => {
+                // console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `${user.name} is an premium now!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
     }
 
 
@@ -71,12 +89,13 @@ const ManageUsers = () => {
                                     {user.email}
                                 </td>
                                 <td className="px-6 py-4">
-                                { user.role === 'admin' ? "Admin" :
-                                    <button onClick={()=>handleMakeAdmin(user)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><FaUsers></FaUsers></button> }
-                                    
+                                    {user.role === 'admin' ? "Admin" :
+                                        <button onClick={() => handleMakeAdmin(user)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><FaUsers></FaUsers></button>}
+
                                 </td>
                                 <td className="px-6 py-4">
-                                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Make Premium</a>
+                                {user.role === 'admin' ? "Admin" :
+                                    <button onClick={() => handleMakePremium(user)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Make Premium</button>}
                                 </td>
                             </tr>)
                         }

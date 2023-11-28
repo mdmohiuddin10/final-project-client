@@ -28,6 +28,10 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
+                path: '/Home',
+                element: <Home></Home>
+            },
+            {
                 path: '/Bio data',
                 element: <BioData></BioData>,
                 loader: ()=>fetch('http://localhost:5000/biodata')

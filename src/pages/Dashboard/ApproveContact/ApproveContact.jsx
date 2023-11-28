@@ -1,18 +1,35 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+
 
 const ApproveContact = () => {
-
     const axiosSecure = useAxiosSecure()
-    const { data: requestData = [] } = useQuery({
+
+
+    const { data: requestData = [], refetch } = useQuery({
         queryKey: ['requestData'],
         queryFn: async () => {
             const res = await axiosSecure.get('/requset')
             return res.data;
         }
     })
-
-    console.log(requestData);
+    const handleApprove = (user) => {
+        axiosSecure.patch(`/requset/admin/${user._id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "ok, request send to the admin",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
 
 
 
@@ -48,18 +65,17 @@ const ApproveContact = () => {
                                     {index + 1}
                                 </th>
                                 <td className="px-6 py-4">
-                                    {user.name}
+                                    {user.RequesterName}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {user.email}
+                                    {user.RequesterEmail}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {user.biodataId}
+                                    {user.RequesterBiodataId}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {user.status === 'premium' ? "Premium" :
-                                        <button onClick={() => handleMakePremium(user)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Approve</button>}
-
+                                    {user.status === 'approved' ? "Approved" :
+                                        <button onClick={() => handleApprove(user)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Approve request</button> }
                                 </td>
                             </tr>)
                         }
