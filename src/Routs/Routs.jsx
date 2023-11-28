@@ -38,9 +38,9 @@ const router = createBrowserRouter([
                 loader: ()=>fetch('http://localhost:5000/biodata')
             },
             {
-                path: '/checkout/:id',
+                path: 'checkout/:id',
                 element: <PrivateRouts><Checkout></Checkout></PrivateRouts>,
-                loader: ()=>fetch('http://localhost:5000/biodata')
+                loader: ({params})=>fetch(`http://localhost:5000/biodata/${params.id}`)
             },
             {
                 path: '/About Us',
@@ -94,7 +94,6 @@ const router = createBrowserRouter([
             {
                 path: 'favourite data',
                 element: <FavouriteBioData></FavouriteBioData>,
-                loader:  ()=>fetch('http://localhost:5000/biodata')
             },
         ]
     }
