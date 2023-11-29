@@ -20,12 +20,14 @@ import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import MailIcon from '@mui/icons-material/Mail';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import GroupIcon from '@mui/icons-material/Group';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Link, Outlet } from 'react-router-dom';
 import useAdmin from '../Hooks/useAdmin';
+import { Grid } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -40,16 +42,17 @@ const Dashboard = (props) => {
   };
 
   const drawer = (
-    <div>
+    <Grid sx={{backgroundColor: '#fff', fontWeight: '700', height: '100%'}}>
       <Toolbar />
       <Divider />
       {
         isAdmin ? <List>
           {[
             { text: 'Admin Dashboard', icon: <AdminPanelSettingsIcon />, path: '/dashboard/admin home' },
-            { text: 'Manage Users', icon: <GroupIcon />, path: '/dashboard/manage users' },
+            { text: 'Manage Users', icon: <GroupIcon sx={{color: '#0B0223'}} />, path: '/dashboard/manage users' },
             { text: 'Approved Premium', icon: <VerifiedIcon />, path: '/dashboard/approve' },
             { text: 'Approved Contact Request', icon: <ContactPhoneIcon />, path: '/dashboard/Approve request contact' },
+            { text: 'success story', icon: <ContactPhoneIcon />, path: '/dashboard/success story' },
             { text: ' Logout', icon: <LogoutIcon />, path: '' },
           ].map((item) => (
             <ListItem key={item.text} disablePadding>
@@ -66,6 +69,7 @@ const Dashboard = (props) => {
               { text: 'View Biodata', icon: <VisibilityIcon />, path: '/dashboard/view data' },
               { text: 'My Contact Request', icon: <PermContactCalendarIcon />, path: '/dashboard/contact Request' },
               { text: 'Favourites Biodata', icon: <FavoriteIcon />, path: '/dashboard/favourite data' },
+              { text: 'Got Married', icon: <CheckCircleIcon />, path: '/dashboard/Got Married' },
               { text: ' Logout', icon: <LogoutIcon />, path: '' },
             ].map((item) => (
               <ListItem key={item.text} disablePadding>
@@ -93,7 +97,7 @@ const Dashboard = (props) => {
           </ListItem>
         ))}
       </List>
-    </div>
+    </Grid>
   );
 
   // Remove this const when copying and pasting into your project.

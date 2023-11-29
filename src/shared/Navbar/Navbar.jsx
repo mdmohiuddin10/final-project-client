@@ -49,7 +49,7 @@ const Navbar = () => {
 
 
     return (
-        <AppBar sx={{ px: '50px' }} position="static">
+        <AppBar sx={{ px: '50px', backgroundColor: '#FF42A5' }} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -108,7 +108,7 @@ const Navbar = () => {
                                         <NavLink
                                             to={`/${page}`}
                                             className={({ isActive, isPending }) =>
-                                                isPending ? "pending" : isActive ? "active" : ""
+                                                isPending ? "pending" : isActive ? "active" : ''
                                             }
                                         >
                                             {page}

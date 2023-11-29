@@ -17,6 +17,8 @@ import ApproveContact from "../pages/Dashboard/ApproveContact/ApproveContact";
 import PrivateRouts from "./PrivateRouts";
 import DetailsData from "../pages/Details/DetailsData";
 import Checkout from "../pages/Checkout/Checkout";
+import GotMarried from "../pages/Dashboard/GotMarried/GotMarried";
+import SuccessStory from "../pages/Dashboard/SuccessStory/SuccessStory";
 
 const router = createBrowserRouter([
     {
@@ -82,6 +84,10 @@ const router = createBrowserRouter([
                 path: 'Approve request contact',
                 element: <ApproveContact></ApproveContact>
             },
+            {
+                path: 'success story',
+                element: <SuccessStory></SuccessStory>
+            },
             // Normal Users
             {
                 path: 'edit data',
@@ -98,6 +104,10 @@ const router = createBrowserRouter([
             {
                 path: 'favourite data',
                 element: <FavouriteBioData></FavouriteBioData>,
+            },
+            {
+                path: 'Got Married',
+                element: <GotMarried></GotMarried>
             },
         ]
     }

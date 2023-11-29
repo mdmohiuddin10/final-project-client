@@ -19,7 +19,7 @@ const Banner = () => {
                 </div>
                 <div>
                     <img className="relative opacity-70" src="https://i.postimg.cc/Y028NNFW/indian-bride-groom-s-hands-traditional-wedding-ceremony.jpg" />
-                    <div className="absolute justify-center items-center md:top-1/2 top-1/4 w-1/2 md:px-5 px-2">
+                    <div className="absolute justify-center items-center md:top-1/3 top-1/4 w-1/2 md:px-5 px-2">
                         <h2 className="lg:text-6xl md:text-3xl text-lg md:mb-3 mb-2 font-bold">Embark on Loves Journey</h2>
                         <p className="md:text-3xl text-md font-semibold mb-2 md:mb-3"> Your Matrimonial Destiny Awaits Right Here!</p>
                         <button className="bg-blue-700 px-2 py-2 rounded-lg">See More</button>
@@ -27,7 +27,7 @@ const Banner = () => {
                 </div>
                 <div>
                     <img className="relative opacity-70" src="https://i.postimg.cc/7PdrPfrN/couple-altar.jpg" />
-                    <div className="absolute justify-center items-center md:top-1/2 top-1/4 w-1/2 md:px-5 px-2">
+                    <div className="absolute justify-center items-center md:top-1/3 top-1/4 w-1/2 md:px-5 px-2">
                         <h2 className="lg:text-6xl md:text-3xl text-lg md:mb-3 mb-2 font-bold">Embark on Loves Journey</h2>
                         <p className="md:text-3xl text-md font-semibold mb-2 md:mb-3"> Your Matrimonial Destiny Awaits Right Here!</p>
                         <button className="bg-blue-700 px-2 py-2 rounded-lg">See More</button>

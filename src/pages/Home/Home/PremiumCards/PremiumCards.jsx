@@ -14,14 +14,9 @@ const PremiumCards = () => {
     })
 
     const sortData = biodata.sort((a, b) => b.age - a.age);
-   console.log(sortData);
+ 
 
     const premiumCards = sortData.filter(data => data.status === 'premium').slice(0, 6);
-
-    
-
-    console.log(premiumCards);
-
 
 
     return (

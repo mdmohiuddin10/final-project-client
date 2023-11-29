@@ -2,9 +2,12 @@ import { FaTrash } from "react-icons/fa";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProviders";
 
 
 const FavouriteBioData = () => {
+    const { user } = useContext(AuthContext)
 
     const axiosSecure = useAxiosSecure()
     const { data: favouriteData = [], refetch } = useQuery({
@@ -15,6 +18,7 @@ const FavouriteBioData = () => {
         }
     })
 
+    const selectedData = favouriteData.filter(data => data.selfEmail === user?.email)
 
 
     const handleDelete = id => {
@@ -68,21 +72,24 @@ const FavouriteBioData = () => {
                                 Occupation
                             </th>
                             <th scope="col" className="px-6 py-3">
+                                Married
+                            </th>
+                            <th scope="col" className="px-6 py-3">
                                 Delete
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            favouriteData.map((user, index) => <tr key={user._id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            selectedData.map((user, index) => <tr key={user._id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {index + 1}
                                 </th>
                                 <td className="px-6 py-4">
-                                    {user.name}
+                                    {user.favname}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {user.biodataId}
+                                    {user.favbiodataId}
                                 </td>
                                 <td className="px-6 py-4">
                                     {user.permanentDivision}

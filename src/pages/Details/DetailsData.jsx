@@ -2,37 +2,55 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import usePremium from "../../Hooks/usePremium";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProviders";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const DetailsData = () => {
     const { id } = useParams()
     const details = useLoaderData()
     const [isPremium] = usePremium()
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
+    const { user } = useContext(AuthContext)
 
-    // const premium = details.find(d => d.status)
-    // console.log(premium);
 
     // const [isPremium] = usePremium()
     const newData = details.filter(detail => detail._id == id)
     // console.log(newData);
 
-    // relavent data
+  // Relevant data based on gender
     const gender = newData.length > 0 ? newData[0].gender : "";
-
-    // // Relevant data based on gender
     const relevantData = details.filter((data) => data.gender === gender);
     // console.log('relavent data', relevantData);
 
-    // add data to server(favorute data)
-    const handleAddFavourite = async(data) => {
-        const favouriteData = {
-            name: data.name,
-            biodataId: data.biodataId,
-            permanentDivision: data.permanentDivision,
-            occupation: data.occupation
+  
+    const { data: bioData = [] } = useQuery({
+        queryKey: ['bioData'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/biodata')
+            return res.data;
         }
-        console.log(favouriteData);
-        const res =await axiosSecure.post('/favourite', favouriteData)
+    })
+   const selectedData = bioData.filter(data=> data.email === user?.email)
+//    console.log(selectedData);
+
+
+
+    // add data to server(favorute data)
+    const handleAddFavourite = async (data) => {
+        const favouriteData = {
+            favname: data.name,
+            favbiodataId: data.biodataId,
+            permanentDivision: data.permanentDivision,
+            occupation: data.occupation,
+            selfName: user?.displayName,
+            selfEmail: user?.email,
+            selfBiodataId: selectedData.biodataId
+        }
+        // console.log(favouriteData);
+        const res = await axiosSecure.post('/favourite', favouriteData)
         if (res.data.insertedId) {
             // reset()
             Swal.fire({
@@ -43,6 +61,7 @@ const DetailsData = () => {
             });
         }
     }
+
 
     return (
         <div className="grid md:grid-cols-2 grid-cols-1">

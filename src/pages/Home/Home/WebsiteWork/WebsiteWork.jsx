@@ -1,22 +1,20 @@
 import {
     Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel,
 } from 'react-accessible-accordion';
-import feathureImg from '../../../assets/garden-red-gumboots.jpg'
+import feathureImg from '../../../../assets/garden-red-gumboots.jpg'
+
 
 
 // Demo styles, see 'Styles' section below for some notes on use.
 import 'react-accessible-accordion/dist/fancy-example.css';
-import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
+
 
 const WebsiteWork = () => {
     return (
         <div>
             <div className="bg-[url('https://i.postimg.cc/pVJQPM76/groom-bride-with-pink-hair-stand-before-door-with-flower-garlands-light.jpg')] bg-fixed text-white mb-20">
                 <div className="md:pt-10 pt-3">
-                    <SectionTitle
-                        heading={'FROM OUR MENU'}
-                        subHeading={'Check it out'}
-                    ></SectionTitle>
+               
                 </div>
                 <div className="md:flex md:flex-row pt-8 md:pb-20 pb-5 md:px-32 px-10 md:gap-8 justify-center items-center bg-black bg-opacity-30">
                     <div className='flex-1'>
