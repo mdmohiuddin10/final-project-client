@@ -50,7 +50,7 @@ const ContactRequest = () => {
 
 
     return (
-        <div>
+        <div className="px-5">
             <SectionTitle heading={'My Contact Request'}></SectionTitle>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -62,7 +62,7 @@ const ViewBioData = () => {
             <SectionTitle heading={'View Data'}></SectionTitle>
             <div className="">
                 
-                 <div key={data._id} className="flex pt-10 gap-8 bg-gradient-to-r from-pink-500 to-violet-500">
+                 <div key={data._id} className="flex lg:flex-row flex-col-reverse px-5 pt-10 gap-8 bg-gradient-to-r from-pink-500 to-violet-500">
                         <div>
                             <img className="px-5 py-5" src={data.image} alt="" />
                         </div>

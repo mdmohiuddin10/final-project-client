@@ -54,7 +54,7 @@ const ManageUsers = () => {
 
 
     return (
-        <div>
+        <div className="px-5">
             <SectionTitle heading={'Manage Users'}></SectionTitle>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

@@ -48,7 +48,7 @@ const AdminHome = () => {
 
     return (
         <div>
-            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-5">
+            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-5 px-5">
                 <div className="rounded-lg  px-3 py-3 bg-gradient-to-r from-pink-500 to-violet-500">
                     <div className="text-secondary text-3xl mt-3">
                         <FaDollarSign></FaDollarSign>

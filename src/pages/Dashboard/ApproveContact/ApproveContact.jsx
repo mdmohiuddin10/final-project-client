@@ -39,7 +39,7 @@ const ApproveContact = () => {
 
 
     return (
-        <div>
+        <div className="px-5">
             <SectionTitle heading={'Approve Contact Request'}></SectionTitle>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
