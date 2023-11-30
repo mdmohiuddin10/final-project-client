@@ -16,7 +16,6 @@ import ApprovedPremium from "../pages/Dashboard/ApprovedPremium/ApprovedPremium"
 import ApproveContact from "../pages/Dashboard/ApproveContact/ApproveContact";
 import PrivateRouts from "./PrivateRouts";
 import DetailsData from "../pages/Details/DetailsData";
-import Checkout from "../pages/Checkout/Checkout";
 import GotMarried from "../pages/Dashboard/GotMarried/GotMarried";
 import SuccessStory from "../pages/Dashboard/SuccessStory/SuccessStory";
 import Contact from "../pages/Contact/Contact";
@@ -41,12 +40,12 @@ const router = createBrowserRouter([
             {
                 path: '/Bio data',
                 element: <BioData></BioData>,
-                loader: ()=>fetch('http://localhost:5000/biodata')
+                loader: ()=>fetch('https://final-project-server-beta.vercel.app')
             },
             {
                 path: '/details/:id',
                 element: <PrivateRouts><DetailsData></DetailsData></PrivateRouts>,
-                loader: ()=>fetch('http://localhost:5000/biodata')
+                loader: ()=>fetch('https://final-project-server-beta.vercel.app')
             },
             // {
             //     path: '/checkout/:id',
@@ -60,7 +59,7 @@ const router = createBrowserRouter([
             {
                 path: '/request/:id',
                 element: <Request></Request>,
-                loader: ()=>fetch('http://localhost:5000/biodata')
+                loader: ()=>fetch('https://final-project-server-beta.vercel.app')
             },
             {
                 path: '/contact Us',
@@ -96,7 +95,7 @@ const router = createBrowserRouter([
             {
                 path: 'approve',
                 element: <ApprovedPremium></ApprovedPremium>,
-                loader: ()=>fetch('http://localhost:5000/biodata')
+                loader: ()=>fetch('https://final-project-server-beta.vercel.app')
             },
             {
                 path: 'Approve request contact',
