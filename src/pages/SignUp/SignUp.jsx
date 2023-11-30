@@ -53,26 +53,26 @@ const SignUp = () => {
 
     return (
         <div>
-            <div className="flex">
-                <div>
+            <div className="flex md:flex-row flex-col-reverse">
+                <div className="md:w-1/2 w-full">
                     <img src="https://i.postimg.cc/D0JhKf1j/5423351-Mobile-login.jpg" alt="" />
                 </div>
-                <div className="w-1/2 max-w-sm shadow-2xl bg-base-100">
+                <div className="md:w-1/2 w-full shadow-2xl bg-base-100 px-5 mt-20">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <h1 className="text-3xl font-bold mb-5">Sign Up now!</h1>
                         <div className="form-control mb-5">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>
-                            <input {...register("name", { required: true })} type="text" id="name" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required></input>
+                            <input {...register("name", { required: true })} type="text" id="name" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Your Name" required></input>
                             {errors.name && <span>This field is required</span>}
                         </div>
                         <div className="form-control mb-5">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
-                            <input {...register("email", { required: true })} type="email" id="email" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required></input>
+                            <input {...register("email", { required: true })} type="email" id="email" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Your Email" required></input>
                             {errors.email && <span>This field is required</span>}
                         </div>
                         <div className="form-control mb-5">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo URL</label>
-                            <input {...register("photoURL", { required: true })} type="text" id="photoURL" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required></input>
+                            <input {...register("photoURL", { required: true })} type="text" id="photoURL" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Photo URL" required></input>
                             {errors.photoURL && <span>This field is required</span>}
                         </div>
                         <div className="form-control mb-5">
@@ -82,7 +82,7 @@ const SignUp = () => {
                                 minLength: 6,
                                 maxLength: 20,
                                 pattern: /[a-zA-Z0-9!@#$%^&*]{6,20}/
-                            })} type="password" id="password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required></input>
+                            })} type="password" id="password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Password" required></input>
                             {errors.password && <span>This field is required</span>}
                             {errors.password?.type === 'minLength' && <span>password must be 6 characters</span>}
                             {errors.password?.type === 'maxLength' && <span>password must be less than 20 characters</span>}

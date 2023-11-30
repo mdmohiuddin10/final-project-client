@@ -28,7 +28,7 @@ const SuccessStory = () => {
         }
     })
 
-    console.log(reviewData);
+  
 
 
 

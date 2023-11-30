@@ -14,6 +14,10 @@ const ApproveContact = () => {
             return res.data;
         }
     })
+
+    console.log('request',requestData);
+
+
     const handleApprove = (user) => {
         axiosSecure.patch(`/requset/admin/${user._id}`)
             .then(res => {
@@ -23,7 +27,7 @@ const ApproveContact = () => {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "ok, request send to the admin",
+                        title: "ok, request is Approved",
                         showConfirmButton: false,
                         timer: 1500
                     });

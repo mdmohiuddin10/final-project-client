@@ -36,8 +36,6 @@ const DetailsData = () => {
    const selectedData = bioData.filter(data=> data.email === user?.email)
 //    console.log(selectedData);
 
-
-
     // add data to server(favorute data)
     const handleAddFavourite = async (data) => {
         const favouriteData = {
@@ -64,15 +62,15 @@ const DetailsData = () => {
 
 
     return (
-        <div className="grid md:grid-cols-2 grid-cols-1">
+        <div className="grid lg:grid-cols-2 grid-cols-1 mt-10">
             <div className="flex">
                 {
-                    newData.map(data => <div key={data._id}>
+                    newData.map(data => <div key={data._id} className="px-5">
                         <div>
-                            <img className="px-5 py-5" src={data.image} alt="" />
+                            <img className="py-5 md:px-10" src={data.image} alt="" />
                         </div>
                         <div className="flex-1">
-                            <div className="relative px-10 rounded-lg overflow-x-auto">
+                            <div className="relative px-5 rounded-lg overflow-x-auto">
                                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
@@ -231,7 +229,6 @@ const DetailsData = () => {
                                     </div>
                                     <button onClick={() => handleAddFavourite(data)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Add to Favourite</button>
                                 </> : <>
-                                    <button disabled type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Add to Favourite</button>
                                     <Link to={`/checkout/${data._id}`}>
                                         <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Make Request</button>
                                     </Link>
@@ -243,7 +240,7 @@ const DetailsData = () => {
                     </div>)
                 }
             </div>
-            <div>
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-3 mt-10 px-5">
                 {
                     relevantData.map(relavant =>
                         <div key={relavant._id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

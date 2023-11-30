@@ -1,58 +1,61 @@
-import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../payments/CheckoutForm";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useContext } from "react";
+import SectionTitle from "../../shared/SectionTitle/SectionTitle";
 
-// import { useQuery } from "@tanstack/react-query";
-// import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_gatway_PK);
 
 
 const Checkout = () => {
-    const biodata = useLoaderData()
-    const [data, setData] = useState()
+    const biodataId = useLoaderData()
     const { user } = useContext(AuthContext)
-    // const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
 
-  
-   
-    useEffect(()=>{
-        fetch('http://localhost:5000/biodata')
-        .then(res=> res.json())
-        .then(data => setData(data))
-    },[])
 
-    const newData = data?.find(datam =>datam.email === user?.email)
-    // console.log(newData);
+    const { data: bioData = [] } = useQuery({
+        queryKey: ['bioData'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/biodata')
+            return res.data;
+        }
+    })
 
-    
+    const newData = bioData.filter(data => data.email === user?.email)
+
 
 
     return (
         <div>
-            <h2>hlew</h2>
-                <div className="mb-5">
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requested Id:</label>
-                    <input
-                    defaultValue={biodata.biodataId} readOnly type="text" id="requestedId" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
-                </div>
-                <div className="mb-5">
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requester Id:</label>
-                    <input 
-                    defaultValue={newData?.biodataId} readOnly type="text" id="requesterId" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
-                </div>
-                <div className="mb-5">
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requester Id:</label>
-                    <input
-                    defaultValue={newData?.email} readOnly type="text" id="requesterEmail" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
-                </div>
-                <Elements stripe={stripePromise}>
-                  <CheckoutForm biodata={biodata} newData={newData}></CheckoutForm>
-                </Elements>
-        
+            <SectionTitle heading={'Checkout'}></SectionTitle>
+
+            <h2 className="text-xl font-semibold mb-5 text-center">You have to pay 500 tk For every Request</h2>
+
+            <div className="mb-5">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requested Id:</label>
+                <input
+                    defaultValue={biodataId.biodataId} readOnly type="text" id="requestedId" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+            </div>
+            <div className="mb-5">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requester Id:</label>
+                <input
+                    defaultValue={newData[0]?.biodataId} readOnly type="text" id="requestedId" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+            </div>
+          
+            <div className="mb-5">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requester Id:</label>
+                <input
+                    defaultValue={user?.email} readOnly type="text" id="requesterEmail" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+            </div>
+            <Elements stripe={stripePromise}>
+                <CheckoutForm biodataId={biodataId} newData={newData[0]}></CheckoutForm>
+            </Elements>
+
         </div>
     );
 };

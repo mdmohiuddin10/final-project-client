@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import SectionTitle from "../../../shared/SectionTitle/SectionTitle";
 
 
 
@@ -67,7 +68,7 @@ const GotMarried = () => {
 
     return (
         <div>
-            <h1>ls</h1>
+            <SectionTitle heading={'Review Section'} subHeading={'Got Merried'}></SectionTitle>
             <form onSubmit={handleSubmit(onSubmit)} className="w-3/4 mx-auto">
                 <div className="mb-5">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Self Biodata Id*</label>

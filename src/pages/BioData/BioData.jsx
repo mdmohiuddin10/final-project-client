@@ -1,14 +1,16 @@
 import { useContext, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
+import SectionTitle from "../../shared/SectionTitle/SectionTitle";
 
 const BioData = () => {
     const [genderFilter, setGenderFilter] = useState("");
+    const [ageFilter, setAgeFilter] = useState("");
     const [divisionFilter, setDivisionFilter] = useState("");
 
     const allBiodata = useLoaderData();
-    const {user} = useContext(AuthContext)
-    const selectedBiodata = allBiodata.filter(biodata=> biodata.email !== user?.email)
+    const { user } = useContext(AuthContext)
+    const selectedBiodata = allBiodata.filter(biodata => biodata.email !== user?.email)
     // console.log(selectedBiodata);
 
     // Filter data based on selected filters
@@ -17,25 +19,32 @@ const BioData = () => {
             !genderFilter || biodata.gender.toLowerCase() === genderFilter.toLowerCase();
         const divisionFilterMatch =
             !divisionFilter || biodata.permanentDivision.toLowerCase() === divisionFilter.toLowerCase();
+        const ageFilterMatch =
+            !ageFilter || biodata.age === (ageFilter, 10); 
 
-        return genderFilterMatch && divisionFilterMatch;
+        return genderFilterMatch && divisionFilterMatch && ageFilterMatch;
     });
 
     return (
         <div className="mt-10">
-            <div className="flex gap-5">
-                <div className="relative mb-6 w-1/2">
-                    <label className="sr-only">Labels range</label>
-                    <input id="labels-range-input" type="range" value="1" min="18" max="40" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
-                    <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min ($18)</span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$19</span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-2/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$20</span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max ($40)</span>
+
+            <SectionTitle heading={'All Biodata'} subHeading={'lets see'}></SectionTitle>
+            <div className="flex gap-5 md:mb-20 mb-10 w-full mx-auto">
+                <div className="flex-1">
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Filter By Age
+                    </label>
+                    <input
+                        type="number" // Change the input type to number
+                        id="age"
+                        value={ageFilter}
+                        onChange={(e) => setAgeFilter(e.target.value)}
+                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        placeholder="Filter By Age"
+                        required
+                    />
                 </div>
-
-                <div>
-
-
+                <div className="flex-1">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Biodata Type*
                     </label>
@@ -52,7 +61,7 @@ const BioData = () => {
                         <option value="female">Female</option>
                     </select>
                 </div>
-                <div>
+                <div className="flex-1">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Present Division name
                     </label>
@@ -76,10 +85,9 @@ const BioData = () => {
                 </div>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-5">
-                <h2>hlw {filteredBiodata.length} </h2>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 px-5">
                 {filteredBiodata.map((biodata) => (
-                    <div key={biodata._id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div key={biodata._id} className="max-w-sm bg-[#F3F3F3] border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
                             <img className="rounded-t-lg h-[300px] w-full bg-contain" src={biodata.image} alt="" />
                         </a>
@@ -95,7 +103,9 @@ const BioData = () => {
 
                             </div>
 
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Permanent Division name : {biodata.permanentDivision}</p>
+                            <div className="flex justify-center">
+                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Permanent Division: {biodata.permanentDivision}</p>
+                            </div>
 
                             <div className="flex justify-evenly">
                                 <div>

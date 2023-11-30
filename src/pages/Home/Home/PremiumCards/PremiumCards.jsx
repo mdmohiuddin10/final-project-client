@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../../../shared/SectionTitle/SectionTitle";
 
 
 const PremiumCards = () => {
@@ -14,18 +15,18 @@ const PremiumCards = () => {
     })
 
     const sortData = biodata.sort((a, b) => b.age - a.age);
- 
+
 
     const premiumCards = sortData.filter(data => data.status === 'premium').slice(0, 6);
 
 
     return (
-        <div>
-            <div className="grid lg:grid-cols-3 gap-5">
-              
+        <div className="mt-10">
+            <SectionTitle heading={'Our Premium Member'} subHeading={'lets see'}></SectionTitle>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 px-5 grid-cols-1 gap-5">
                 {premiumCards.map((biodata) => (
-                    <div key={biodata._id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <img className="rounded-t-lg h-[300px] w-full bg-contain" src={biodata.image} alt="" />
+                    <div key={biodata._id} className="max-w-sm bg-[#F3F3F3] border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <img className="rounded-t-lg h-[300px] w-full bg-contain" src={biodata.image} alt="" />
                         <div className="p-5">
 
                             <div className="flex justify-evenly">
@@ -38,7 +39,9 @@ const PremiumCards = () => {
 
                             </div>
 
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Permanent Division name : {biodata.permanentDivision}</p>
+                            <div className="flex justify-center">
+                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Permanent Division:  {biodata.permanentDivision}</p>
+                            </div>
 
                             <div className="flex justify-evenly">
                                 <div>

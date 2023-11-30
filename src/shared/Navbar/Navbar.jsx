@@ -15,8 +15,9 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 
+
 const pages = ['Home', 'Bio data', 'About Us', 'Contact Us', 'login', 'Sign up', 'Dashboard'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
     const { user, logOut, loading } = useContext(AuthContext)
@@ -49,7 +50,7 @@ const Navbar = () => {
 
 
     return (
-        <AppBar sx={{ px: '50px', backgroundColor: '#FF42A5' }} position="static">
+        <AppBar sx={{ px: '50px', backgroundColor: '#D1A054' }} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -69,7 +70,7 @@ const Navbar = () => {
                                 textDecoration: 'none',
                             }}
                         >
-                            LOGO
+                            Porinhoy
                         </Typography>
                     </Link>
 
@@ -105,23 +106,23 @@ const Navbar = () => {
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">
-                                        <NavLink
+                                        {/* <NavLink
                                             to={`/${page}`}
                                             className={({ isActive, isPending }) =>
                                                 isPending ? "pending" : isActive ? "active" : ''
                                             }
                                         >
                                             {page}
-                                        </NavLink>
-                                        {/* <Link to={`/${page}`}>{page}</Link> */}
+                                        </NavLink> */}
+                                        <Link to={`/${page}`}>{page}</Link>
                                     </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
                     <Typography
-                        variant="h5"
+                        variant="h6"
                         noWrap
                         component="a"
                         href="#app-bar-with-responsive-menu"
@@ -131,12 +132,12 @@ const Navbar = () => {
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            letterSpacing: '',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                       Porinhoy
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
@@ -145,14 +146,7 @@ const Navbar = () => {
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                <NavLink
-                                    to={`/${page}`}
-                                    className={({ isActive, isPending }) =>
-                                        isPending ? "pending" : isActive ? "active" : ""
-                                    }
-                                >
-                                    {page}
-                                </NavLink>;
+                               <Link to={`/${page}`}>{page}</Link>
                             </Button>
                         ))}
                     </Box>

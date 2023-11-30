@@ -19,11 +19,15 @@ import DetailsData from "../pages/Details/DetailsData";
 import Checkout from "../pages/Checkout/Checkout";
 import GotMarried from "../pages/Dashboard/GotMarried/GotMarried";
 import SuccessStory from "../pages/Dashboard/SuccessStory/SuccessStory";
+import Contact from "../pages/Contact/Contact";
+import Profile from "../pages/Profile/Profile";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: ([
             {
                 path: '/',
@@ -53,13 +57,21 @@ const router = createBrowserRouter([
                 element: <About></About>
             },
             {
+                path: '/contact Us',
+                element: <Contact></Contact>
+            },
+            {
                 path: '/Sign up',
                 element: <SignUp></SignUp>
             },
             {
                 path: '/login',
                 element: <Login></Login>
-            }
+            },
+            {
+                path: '/Profile',
+                element: <Profile></Profile>
+            },
         ])
     },
     {

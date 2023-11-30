@@ -7,7 +7,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
 
-const CheckoutForm = ({ biodata, newData }) => {
+const CheckoutForm = ({ biodataId, newData }) => {
     const [error, setError] = useState('')
     const { user } = useContext(AuthContext)
     const [clientSecret, setClientSecret] = useState('')
@@ -92,10 +92,10 @@ const CheckoutForm = ({ biodata, newData }) => {
                         RequesterBiodataId: newData.biodataId,
                         Requesterimage: newData.image,
                         transectionId: paymentIntent.id,
-                        requestedName: biodata.name,
-                        requestedBiodataId: biodata.biodataId,
-                        requestedNumber: biodata.number,
-                        requestedEmail: biodata.email,
+                        requestedName: biodataId.name,
+                        requestedBiodataId: biodataId.biodataId,
+                        requestedNumber: biodataId.number,
+                        requestedEmail: biodataId.email,
                         price: price,
                         date: new Date(), //utc data convert.use moment js to convert..
                         status: 'pending'
@@ -104,8 +104,7 @@ const CheckoutForm = ({ biodata, newData }) => {
                     //
                     const res = await axiosSecure.post('/requset', request);
                     console.log('payment saved', res);
-                    if (res.data?.data?.insertedId) {
-                        // todo
+                    if (res.data?.insertedId) {
                         Swal.fire({
                             position: "center",
                             icon: "success",
@@ -150,8 +149,8 @@ const CheckoutForm = ({ biodata, newData }) => {
                         },
                     }}
                 />
-                <button type="submit" disabled={!stripe || !clientSecret}>
-                    Pay
+                <button className="bg-[#D1A054] mt-5 px-2 py-2 text-white rounded-lg" type="submit" disabled={!stripe || !clientSecret}>
+                    Submit
                 </button>
                 <p>{error}</p>
             </form>

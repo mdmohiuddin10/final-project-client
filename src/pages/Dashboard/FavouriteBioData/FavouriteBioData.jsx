@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import SectionTitle from "../../../shared/SectionTitle/SectionTitle";
 
 
 const FavouriteBioData = () => {
@@ -50,7 +51,7 @@ const FavouriteBioData = () => {
 
     return (
         <div>
-
+            <SectionTitle heading={'My Favourite Biodata'} subHeading={'hello'}></SectionTitle>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -70,9 +71,6 @@ const FavouriteBioData = () => {
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Occupation
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Married
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Delete

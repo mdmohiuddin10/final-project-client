@@ -28,32 +28,38 @@ import Typography from '@mui/material/Typography';
 import { Link, Outlet } from 'react-router-dom';
 import useAdmin from '../Hooks/useAdmin';
 import { Grid } from '@mui/material';
+import { useContext } from 'react';
+import { AuthContext } from '../Providers/AuthProviders';
 
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
   const [isAdmin] = useAdmin()
-  // console.log('from dashboard', user);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const {logOut, user} = useContext(AuthContext)
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const handleLogout = () => {
+    logOut();
+  }
+
   const drawer = (
-    <Grid sx={{backgroundColor: '#fff', fontWeight: '700', height: '100%'}}>
+    <Grid sx={{ backgroundColor: '#D1A054', fontWeight: '700', height: '100%' }}>
       <Toolbar />
       <Divider />
       {
         isAdmin ? <List>
           {[
             { text: 'Admin Dashboard', icon: <AdminPanelSettingsIcon />, path: '/dashboard/admin home' },
-            { text: 'Manage Users', icon: <GroupIcon sx={{color: '#0B0223'}} />, path: '/dashboard/manage users' },
+            { text: 'Manage Users', icon: <GroupIcon sx={{ color: '#0B0223' }} />, path: '/dashboard/manage users' },
             { text: 'Approved Premium', icon: <VerifiedIcon />, path: '/dashboard/approve' },
             { text: 'Approved Contact Request', icon: <ContactPhoneIcon />, path: '/dashboard/Approve request contact' },
             { text: 'success story', icon: <ContactPhoneIcon />, path: '/dashboard/success story' },
-            { text: ' Logout', icon: <LogoutIcon />, path: '' },
+            { text: ' Logout', icon: <LogoutIcon />, onClick: handleLogout, path: '' },
           ].map((item) => (
             <ListItem key={item.text} disablePadding>
               <ListItemButton component={Link} to={item.path}>
@@ -70,10 +76,10 @@ const Dashboard = (props) => {
               { text: 'My Contact Request', icon: <PermContactCalendarIcon />, path: '/dashboard/contact Request' },
               { text: 'Favourites Biodata', icon: <FavoriteIcon />, path: '/dashboard/favourite data' },
               { text: 'Got Married', icon: <CheckCircleIcon />, path: '/dashboard/Got Married' },
-              { text: ' Logout', icon: <LogoutIcon />, path: '' },
+              { text: ' Logout', icon: <LogoutIcon />, onClick: handleLogout, path: '' },
             ].map((item) => (
               <ListItem key={item.text} disablePadding>
-                <ListItemButton component={Link} to={item.path}>
+                <ListItemButton component={Link} to={item.path} onClick={item.onClick}>
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} />
                 </ListItemButton>
@@ -85,9 +91,8 @@ const Dashboard = (props) => {
       <List>
         {[
           { text: 'Home', icon: <InboxIcon />, path: '/' },
-          { text: 'About Us', icon: <MailIcon />, path: '/about' },
-          { text: 'Contact', icon: <InboxIcon />, path: '/contact' },
-          { text: 'Manage Users', icon: <MailIcon />, path: '/dashboard/manage-users' },
+          { text: 'About Us', icon: <MailIcon />, path: '/About Us' },
+          { text: 'Contact', icon: <InboxIcon />, path: '/contact Us' },
         ].map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton component={Link} to={item.path}>
@@ -133,14 +138,14 @@ const Dashboard = (props) => {
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+       
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
@@ -164,8 +169,8 @@ const Dashboard = (props) => {
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
+        <Typography></Typography>
         <Toolbar />
-
         <Outlet></Outlet>
       </Box>
     </Box>
