@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Socail from "../../shared/SocailLogin/Socail";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
+import SectionTitle from "../../shared/SectionTitle/SectionTitle";
 
 
 const SignUp = () => {
@@ -53,6 +55,10 @@ const SignUp = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Porinhoy || Sign Up</title>
+            </Helmet>
+            <SectionTitle heading={'Sign Up'} subHeading={'stay connected'}></SectionTitle>
             <div className="flex md:flex-row flex-col-reverse">
                 <div className="md:w-1/2 w-full">
                     <img src="https://i.postimg.cc/D0JhKf1j/5423351-Mobile-login.jpg" alt="" />

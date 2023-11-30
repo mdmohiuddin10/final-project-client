@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import SectionTitle from "../../shared/SectionTitle/SectionTitle";
+import { Helmet } from "react-helmet";
 
 const BioData = () => {
     const [genderFilter, setGenderFilter] = useState("");
@@ -20,13 +21,16 @@ const BioData = () => {
         const divisionFilterMatch =
             !divisionFilter || biodata.permanentDivision.toLowerCase() === divisionFilter.toLowerCase();
         const ageFilterMatch =
-            !ageFilter || biodata.age === (ageFilter, 10); 
+            !ageFilter || biodata.age === (ageFilter, 10);
 
         return genderFilterMatch && divisionFilterMatch && ageFilterMatch;
     });
 
     return (
         <div className="mt-10">
+            <Helmet>
+                <title>Porinhoy || All Data</title>
+            </Helmet>
 
             <SectionTitle heading={'All Biodata'} subHeading={'lets see'}></SectionTitle>
             <div className="flex gap-5 md:mb-20 mb-10 w-full mx-auto">

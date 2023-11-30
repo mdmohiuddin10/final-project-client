@@ -2,6 +2,7 @@ import { FaUsers } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../shared/SectionTitle/SectionTitle";
 // import { useState } from "react";
 
 
@@ -24,7 +25,7 @@ const ApprovedPremium = () => {
             confirmButtonText: "Yes, Make it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/biodata/${user._id}`)
+                axiosSecure.patch(`/biodata/${user.email}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.modifiedCount > 0) {
@@ -45,6 +46,7 @@ const ApprovedPremium = () => {
 
     return (
         <div>
+            <SectionTitle heading={'Approve Premium'}></SectionTitle>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -84,7 +86,6 @@ const ApprovedPremium = () => {
                                 <td className="px-6 py-4">
                                     {user.status === 'premium' ? "Premium" :
                                         <button onClick={() => handleMakePremium(user)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><FaUsers></FaUsers></button>}
-
                                 </td>
                             </tr>)
                         }

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { FaDollarSign } from "react-icons/fa";
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Legend, Tooltip, } from 'recharts';
 
 
 const AdminHome = () => {
@@ -36,6 +36,14 @@ const AdminHome = () => {
     console.log(femaleData)
 
     const revenue = requestData.reduce((total, payment) => total + payment.price, 0)
+
+    const data = [
+        { name: 'Total Biodata', value: bioData.length },
+        { name: 'Total Male', value: maleData.length },
+        { name: 'Total Female', value: femaleData.length },
+        { name: 'Premium', value: premiumData.length },
+        { name: 'Revenue', value: revenue.length }
+    ];
 
 
     return (
@@ -88,27 +96,32 @@ const AdminHome = () => {
                 </div>
             </div>
 
-            <ResponsiveContainer width="100%" height="100%">
-                <PieChart width={400} height={400}>
-                    <Pie
-                        dataKey="value"
-                        isAnimationActive={false}
-                        data={maleData}
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={80}
-                        fill="#8884d8"
-                        label
-                    />
-                    <Pie dataKey="value" data={maleData} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" />
-                    <Tooltip />
-                </PieChart>
-            </ResponsiveContainer>
+
+            <PieChart width={400} height={400}>
+                <Pie
+                    dataKey="value"
+                    isAnimationActive={false}
+                    data={data}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    label
+                />
+                <Pie dataKey="value" data={data} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" />
+                <Tooltip />
+            </PieChart>
+            <Legend></Legend>
+
         </div>
     );
 };
 
 export default AdminHome;
+
+
+
+
 
 
 

@@ -22,6 +22,7 @@ import SuccessStory from "../pages/Dashboard/SuccessStory/SuccessStory";
 import Contact from "../pages/Contact/Contact";
 import Profile from "../pages/Profile/Profile";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Request from "../pages/Request/Request";
 
 const router = createBrowserRouter([
     {
@@ -47,14 +48,19 @@ const router = createBrowserRouter([
                 element: <PrivateRouts><DetailsData></DetailsData></PrivateRouts>,
                 loader: ()=>fetch('http://localhost:5000/biodata')
             },
-            {
-                path: 'checkout/:id',
-                element: <PrivateRouts><Checkout></Checkout></PrivateRouts>,
-                loader: ({params})=>fetch(`http://localhost:5000/biodata/${params.id}`)
-            },
+            // {
+            //     path: '/checkout/:id',
+            //     element:<Checkout></Checkout>,
+            //     loader: ()=>fetch('http://localhost:5000/biodata')  
+            // },
             {
                 path: '/About Us',
                 element: <About></About>
+            },
+            {
+                path: '/request/:id',
+                element: <Request></Request>,
+                loader: ()=>fetch('http://localhost:5000/biodata')
             },
             {
                 path: '/contact Us',

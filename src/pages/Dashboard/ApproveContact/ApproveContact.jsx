@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../shared/SectionTitle/SectionTitle";
 
 
 const ApproveContact = () => {
@@ -39,7 +40,7 @@ const ApproveContact = () => {
 
     return (
         <div>
-
+            <SectionTitle heading={'Approve Contact Request'}></SectionTitle>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

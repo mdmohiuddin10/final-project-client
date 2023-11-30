@@ -30,6 +30,8 @@ import useAdmin from '../Hooks/useAdmin';
 import { Grid } from '@mui/material';
 import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProviders';
+import { Helmet } from 'react-helmet';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const drawerWidth = 240;
 
@@ -37,7 +39,7 @@ const Dashboard = (props) => {
   const [isAdmin] = useAdmin()
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const {logOut, user} = useContext(AuthContext)
+  const { logOut } = useContext(AuthContext)
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -49,6 +51,9 @@ const Dashboard = (props) => {
 
   const drawer = (
     <Grid sx={{ backgroundColor: '#D1A054', fontWeight: '700', height: '100%' }}>
+      <Helmet>
+        <title>Porinhoy || Dashboard</title>
+      </Helmet>
       <Toolbar />
       <Divider />
       {
@@ -138,14 +143,14 @@ const Dashboard = (props) => {
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-       
+
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, 
+            keepMounted: true,
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
@@ -171,6 +176,7 @@ const Dashboard = (props) => {
       >
         <Typography></Typography>
         <Toolbar />
+
         <Outlet></Outlet>
       </Box>
     </Box>

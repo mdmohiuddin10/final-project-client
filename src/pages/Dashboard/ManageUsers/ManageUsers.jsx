@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../shared/SectionTitle/SectionTitle";
 
 
 const ManageUsers = () => {
@@ -34,9 +35,10 @@ const ManageUsers = () => {
 
     // working place
     const handleMakePremium = user => {
-        axiosSecure.patch(`/biodata/${user.email}`)
+        console.log(user.email);
+        axiosSecure.patch(`/biodata/admin/${user.email}`)
             .then(res => {
-                // console.log(res.data);
+                console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     refetch()
                     Swal.fire({
@@ -53,7 +55,7 @@ const ManageUsers = () => {
 
     return (
         <div>
-
+            <SectionTitle heading={'Manage Users'}></SectionTitle>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

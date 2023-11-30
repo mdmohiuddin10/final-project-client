@@ -44,11 +44,11 @@ const SuccessCenter = () => {
                     </div>
                     <div className="mb-3">
                         <h2>Total Male:</h2>
-                        <ProgressBar completed={maleData.length} maxCompleted={10} transitionDuration="5s" transitionTimingFunction="ease-in-out" animateOnRender initCompletedOnAnimation={0} />
+                        <ProgressBar completed={maleData.length} maxCompleted={20} transitionDuration="5s" transitionTimingFunction="ease-in-out" animateOnRender initCompletedOnAnimation={0} />
                     </div>
                     <div className="mb-3">
                         <h2>Total Female:</h2>
-                        <ProgressBar completed={femaleData.length} maxCompleted={10} transitionDuration="5s" transitionTimingFunction="ease-in-out" animateOnRender initCompletedOnAnimation={0} />
+                        <ProgressBar completed={femaleData.length} maxCompleted={20} transitionDuration="5s" transitionTimingFunction="ease-in-out" animateOnRender initCompletedOnAnimation={0} />
                     </div>
                     <div className="mb-3">
                         <h2>Wedding Completed:</h2>

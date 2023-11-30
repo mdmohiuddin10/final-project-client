@@ -20,12 +20,12 @@ const DetailsData = () => {
     const newData = details.filter(detail => detail._id == id)
     // console.log(newData);
 
-  // Relevant data based on gender
+    // Relevant data based on gender
     const gender = newData.length > 0 ? newData[0].gender : "";
-    const relevantData = details.filter((data) => data.gender === gender);
+    const relevantData = details.filter((data) => data.gender === gender).slice(0, 4);
     // console.log('relavent data', relevantData);
 
-  
+
     const { data: bioData = [] } = useQuery({
         queryKey: ['bioData'],
         queryFn: async () => {
@@ -33,8 +33,8 @@ const DetailsData = () => {
             return res.data;
         }
     })
-   const selectedData = bioData.filter(data=> data.email === user?.email)
-//    console.log(selectedData);
+    const selectedData = bioData.filter(data => data.email === user?.email)
+    //    console.log(selectedData);
 
     // add data to server(favorute data)
     const handleAddFavourite = async (data) => {
@@ -229,9 +229,12 @@ const DetailsData = () => {
                                     </div>
                                     <button onClick={() => handleAddFavourite(data)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Add to Favourite</button>
                                 </> : <>
-                                    <Link to={`/checkout/${data._id}`}>
+                                <Link to={`/request/${data._id}`}>
                                         <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Make Request</button>
                                     </Link>
+                                    {/* <Link to={'/Bio data'}>
+                                        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 ">Make Request</button>
+                                    </Link> */}
                                 </>
                             }
 
@@ -240,44 +243,56 @@ const DetailsData = () => {
                     </div>)
                 }
             </div>
-            <div className="grid md:grid-cols-2 grid-cols-1 gap-3 mt-10 px-5">
-                {
-                    relevantData.map(relavant =>
-                        <div key={relavant._id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <a href="#">
-                                <img className="rounded-t-lg h-[300px] w-full bg-contain" src={relavant.image} alt="" />
-                            </a>
-                            <div className="p-5">
+            {/* relavent data */}
+            <div>
+                <div className="grid md:grid-cols-2 grid-cols-1 gap-3 mt-10 px-5">
+                    {
+                        relevantData.map(relavant =>
+                            <div key={relavant._id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img className="rounded-t-lg h-[300px] w-full bg-contain" src={relavant.image} alt="" />
+                                </a>
+                                <div className="p-5">
 
-                                <div className="flex justify-evenly">
-                                    <div>
-                                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Biodata Id: {relavant.biodataId}</h5>
-                                    </div>
-                                    <div>
-                                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Gender: {relavant.gender}</h5>
+                                    <div className="flex justify-evenly">
+                                        <div>
+                                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Biodata Id: {relavant.biodataId}</h5>
+                                        </div>
+                                        <div>
+                                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Gender: {relavant.gender}</h5>
+                                        </div>
+
                                     </div>
 
+                                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Permanent Division name : {relavant.permanentDivision}</p>
+
+                                    <div className="flex justify-evenly">
+                                        <div>
+                                            <h5 className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Age: {relavant.age}</h5>
+                                        </div>
+                                        <div>
+                                            <h5 className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Occupation: {relavant.occupation}</h5>
+                                        </div>
+
+                                    </div>
+                                    <Link to={'/bio data'}>
+                                        <button type="button" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            View Profile
+                                        </button>
+                                    </Link>
                                 </div>
+                            </div>)
+                    }
 
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Permanent Division name : {relavant.permanentDivision}</p>
-
-                                <div className="flex justify-evenly">
-                                    <div>
-                                        <h5 className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Age: {relavant.age}</h5>
-                                    </div>
-                                    <div>
-                                        <h5 className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-xl">Occupation: {relavant.occupation}</h5>
-                                    </div>
-
-                                </div>
-                                <Link to={'/bio data'}>
-                                    <button type="button" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        View Profile
-                                    </button>
-                                </Link>
-                            </div>
-                        </div>)
-                }
+                </div>
+                <div className="flex justify-center items-center mt-10">
+                    <button>
+                        <Link to={'/bio data'}>
+                            <button type="button" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                See More
+                            </button>
+                        </Link></button>
+                </div>
             </div>
         </div>
     );

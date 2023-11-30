@@ -3,8 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
+
+
 
 
 const CheckoutForm = ({ biodataId, newData }) => {
@@ -15,7 +15,7 @@ const CheckoutForm = ({ biodataId, newData }) => {
     const stripe = useStripe()
     const elements = useElements()
     const axiosSecure = useAxiosSecure()
-    const axiosPublic = useAxiosPublic()
+   
 
     const price = 500;
 

@@ -28,9 +28,8 @@ const SuccessStory = () => {
         }
     })
 
+    const sortData = reviewData.sort((a, b) => b.rating - a.rating);
   
-
-
 
     return (
         <div>
@@ -61,7 +60,7 @@ const SuccessStory = () => {
                 >
                     <div>
                         {
-                            reviewData.map(data =>
+                            sortData.map(data =>
                                 <SwiperSlide key={data._id}>
                                     <div className="max-w-sm bg-[#F3F3F3] border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                         <img src={data.image} alt="" />

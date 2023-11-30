@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <div className="mt-10">
-<footer className="bg-[#D1A054] dark:bg-gray-900">
+<footer className="bg-[#D1A054] dark:bg-gray-900 lg:px-10">
                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">
                         <div className="mb-6 md:mb-0">
@@ -56,23 +56,18 @@ const Footer = () => {
                         </span>
                         <div className="flex mt-4 sm:justify-center sm:mt-0">
                             <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-
                                 <span className="sr-only">Facebook page</span>
                             </a>
                             <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-
                                 <span className="sr-only">Discord community</span>
                             </a>
                             <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-
                                 <span className="sr-only">Twitter page</span>
                             </a>
                             <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-
                                 <span className="sr-only">GitHub account</span>
                             </a>
                             <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-
                                 <span className="sr-only">Dribbble account</span>
                             </a>
                         </div>
