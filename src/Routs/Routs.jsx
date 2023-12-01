@@ -40,12 +40,12 @@ const router = createBrowserRouter([
             {
                 path: '/Bio data',
                 element: <BioData></BioData>,
-                loader: ()=>fetch('http://localhost:5000')
+                loader: ()=>fetch('https://final-project-server-beta.vercel.app/biodata')
             },
             {
                 path: '/details/:id',
                 element: <PrivateRouts><DetailsData></DetailsData></PrivateRouts>,
-                loader: ()=>fetch('http://localhost:5000')
+                loader: ()=>fetch('https://final-project-server-beta.vercel.app/biodata')
             },
             // {
             //     path: '/checkout/:id',
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             {
                 path: '/request/:id',
                 element: <Request></Request>,
-                loader: ()=>fetch('http://localhost:5000')
+                loader: ()=>fetch('https://final-project-server-beta.vercel.app/requset')
             },
             {
                 path: '/contact Us',
@@ -95,7 +95,7 @@ const router = createBrowserRouter([
             {
                 path: 'approve',
                 element: <ApprovedPremium></ApprovedPremium>,
-                loader: ()=>fetch('http://localhost:5000')
+                loader: ()=>fetch('https://final-project-server-beta.vercel.app/requset')
             },
             {
                 path: 'Approve request contact',
