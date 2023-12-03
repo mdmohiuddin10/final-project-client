@@ -12,11 +12,13 @@ const Request = () => {
     const requestData = useLoaderData()
     const { user } = useContext(AuthContext)
 
+    console.log('request data',requestData);
+
 
     const biodataId = requestData.filter(data => data._id === id)
     console.log('biodataId',biodataId);
     const newData = requestData.filter(data => data.email === user?.email)
-    console.log(newData);
+    // console.log(newData);
 
     return (
         <div>

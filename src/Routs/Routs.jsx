@@ -20,14 +20,14 @@ import GotMarried from "../pages/Dashboard/GotMarried/GotMarried";
 import SuccessStory from "../pages/Dashboard/SuccessStory/SuccessStory";
 import Contact from "../pages/Contact/Contact";
 import Profile from "../pages/Profile/Profile";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
+// import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Request from "../pages/Request/Request";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
-        errorElement: <ErrorPage></ErrorPage>,
+        // errorElement: <ErrorPage></ErrorPage>,
         children: ([
             {
                 path: '/',
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             {
                 path: '/request/:id',
                 element: <Request></Request>,
-                loader: ()=>fetch('https://final-project-server-beta.vercel.app/requset')
+                loader: ()=>fetch('https://final-project-server-beta.vercel.app/biodata')
             },
             {
                 path: '/contact Us',

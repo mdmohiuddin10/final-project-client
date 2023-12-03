@@ -1,189 +1,142 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import List from '@mui/material/List';
-import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import ListItem from '@mui/material/ListItem';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import LogoutIcon from '@mui/icons-material/Logout';
-import ListItemText from '@mui/material/ListItemText';
-import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
-import VerifiedIcon from '@mui/icons-material/Verified';
-import MailIcon from '@mui/icons-material/Mail';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import MenuIcon from '@mui/icons-material/Menu';
-import GroupIcon from '@mui/icons-material/Group';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { Link, Outlet } from 'react-router-dom';
+
 import useAdmin from '../Hooks/useAdmin';
-import { Grid } from '@mui/material';
-import { useContext } from 'react';
-import { AuthContext } from '../Providers/AuthProviders';
-import { Helmet } from 'react-helmet';
-import { ThreeCircles } from 'react-loader-spinner';
+import { FaAd, FaBook, FaCalendar, FaEdit, FaEnvelope, FaEnvelopeOpen, FaFileContract, FaGrinHearts, FaHeart, FaHistory, FaHome, FaList, FaPaypal, FaShoppingCart, FaUsers } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProviders";
+import { NavLink, Outlet } from 'react-router-dom';
 
-const drawerWidth = 240;
-
-const Dashboard = (props) => {
+const Dashboard = () => {
   const [isAdmin] = useAdmin()
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
   const { logOut } = useContext(AuthContext)
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
   const handleLogout = () => {
     logOut();
   }
-
-  const drawer = (
-    <Grid sx={{ backgroundColor: '#D1A054', fontWeight: '700', height: '100%' }}>
-      <Helmet>
-        <title>Porinhoy || Dashboard</title>
-      </Helmet>
-      <Toolbar />
-      <Divider />
-      {
-        isAdmin ? <List>
-          {[
-            { text: 'Admin Dashboard', icon: <AdminPanelSettingsIcon />, path: '/dashboard/admin home' },
-            { text: 'Manage Users', icon: <GroupIcon sx={{ color: '#0B0223' }} />, path: '/dashboard/manage users' },
-            { text: 'Approved Premium', icon: <VerifiedIcon />, path: '/dashboard/approve' },
-            { text: 'Approved Contact Request', icon: <ContactPhoneIcon />, path: '/dashboard/Approve request contact' },
-            { text: 'success story', icon: <ContactPhoneIcon />, path: '/dashboard/success story' },
-            { text: ' Logout', icon: <LogoutIcon />, onClick: handleLogout, path: '' },
-          ].map((item) => (
-            <ListItem key={item.text} disablePadding>
-              <ListItemButton component={Link} to={item.path}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-          : <List>
-            {[
-              { text: 'Edit Biodata', icon: <EditIcon />, path: '/dashboard/edit data' },
-              { text: 'View Biodata', icon: <VisibilityIcon />, path: '/dashboard/view data' },
-              { text: 'My Contact Request', icon: <PermContactCalendarIcon />, path: '/dashboard/contact Request' },
-              { text: 'Favourites Biodata', icon: <FavoriteIcon />, path: '/dashboard/favourite data' },
-              { text: 'Got Married', icon: <CheckCircleIcon />, path: '/dashboard/Got Married' },
-              { text: ' Logout', icon: <LogoutIcon />, onClick: handleLogout, path: '' },
-            ].map((item) => (
-              <ListItem key={item.text} disablePadding>
-                <ListItemButton component={Link} to={item.path} onClick={item.onClick}>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-      }
-      <Divider />
-      <List>
-        {[
-          { text: 'Home', icon: <InboxIcon />, path: '/' },
-          { text: 'About Us', icon: <MailIcon />, path: '/About Us' },
-          { text: 'Contact', icon: <InboxIcon />, path: '/contact Us' },
-        ].map((item) => (
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton component={Link} to={item.path}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Grid>
-  );
-
-  // Remove this const when copying and pasting into your project.
-  const container = window !== undefined ? () => window().document.body : undefined;
-
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
-      >
+    <div className="flex">
+      <div className="w-64 min-h-screen bg-[#D1A054] pt-10">
+        <h2 className="text-3xl font-bold text-center">Porinhoy.com</h2>
+        <ul className="menu text-xl px-5 space-y-5 mt-5">
+          {
+            isAdmin ? <>
+              <div className='flex items-center gap-2'>
+                <FaHome></FaHome>
+                <li className='flex gap-2'><NavLink to={'/dashboard/admin home'}>
+                  Admin Home</NavLink>
+                </li>
+              </div>
+              <div className='flex items-center gap-2'>
+                <FaUsers></FaUsers>
+                <li><NavLink to={'/dashboard/manage users'}>
+                  Manage users</NavLink>
+                </li>
+              </div>
+              <div className='flex items-center gap-2'>
+                <FaList></FaList>
+                <li><NavLink to={'/dashboard/approve'}>
+                  Approved Premium</NavLink>
+                </li>
+              </div>
+              <div className='flex items-center gap-2'>
+                <FaEnvelopeOpen></FaEnvelopeOpen>
+                <li><NavLink to={'/dashboard/Approve request contact'}>
+                  Approved Contact Request</NavLink>
+                </li>
+              </div>
+              <div className='flex items-center gap-2'>
+                <FaHistory></FaHistory>
+                <li><NavLink to={'/dashboard/success story'}>
+                  success story</NavLink>
+                </li>
+              </div>
+              <div className='flex items-center gap-2'>
+                <FaList></FaList>
+                <li onClick={handleLogout}><NavLink to={''}>
+                  Log Out</NavLink>
+                </li>
+              </div>
+            </>
+              :
+              <>
+                <div className='flex items-center gap-2'>
+                  <span><FaEdit></FaEdit></span>
+                  <li className='flex-row'><NavLink to={'/dashboard/edit data'}>
+                    Edit Biodata</NavLink>
+                  </li>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <FaBook></FaBook>
+                  <li><NavLink to={'/dashboard/view data'}>
+                    View Biodata</NavLink>
+                  </li>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <FaFileContract></FaFileContract>
+                  <li><NavLink to={'/dashboard/contact request'}>
+                    My Contact Request</NavLink>
+                  </li>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <FaHeart></FaHeart>
+                  <li><NavLink to={'/dashboard/favourite data'}>
+                    Favourites Biodata</NavLink>
+                  </li>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <FaGrinHearts></FaGrinHearts>
+                  <li><NavLink to={'/dashboard/Got Married'}>
+                    Got Married</NavLink>
+                  </li>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <FaList></FaList>
+                  <li onClick={handleLogout}><NavLink to={''}>
+                    Log Out</NavLink>
+                  </li>
+                </div>
+              </>
+          }
 
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-        >
-          {drawer}
-        </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-          open
-        >
-          {drawer}
-        </Drawer>
-      </Box>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-      >
-        <Typography></Typography>
-        <Toolbar />
+          {/* shared nav links */}
+          <div><hr className='font-bold text-slate-400' /></div>
 
+          <div className='flex items-center gap-2'>
+            <span><FaHome></FaHome></span>
+            <li className=''><NavLink to={'/'}>
+              Home</NavLink>
+            </li>
+          </div>
+          <div className='flex items-center gap-2'>
+            <FaBook></FaBook>
+            <li><NavLink to={'/About Us'}>
+              About Us</NavLink>
+            </li>
+          </div>
+          <div className='flex items-center gap-2'>
+            <FaEnvelope></FaEnvelope>
+            <li><NavLink to={'/contact us'}>
+              Contact</NavLink>
+            </li>
+          </div>
+
+        </ul>
+
+      </div >
+      {/* dashboard content */}
+      < div className="flex-1 pt-10" >
         <Outlet></Outlet>
-      </Box>
-    </Box>
+      </div >
+    </div >
   );
-}
-
-
+};
 
 export default Dashboard;
+
+
+
+
+
+
+
+
+
 

@@ -11,7 +11,7 @@ const ApprovedPremium = () => {
     const axiosSecure = useAxiosSecure()
     // const [loading, setLoading] = useState(true);
     const requsetAppove = requestData.filter(requst => requst.status === 'pending')
-    // console.log(requsetAppove);
+    console.log(requsetAppove);
 
 
     const handleMakePremium = user => {
@@ -25,7 +25,7 @@ const ApprovedPremium = () => {
             confirmButtonText: "Yes, Make it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/biodata/${user.email}`)
+                axiosSecure.patch(`/biodata/${user.RequesterEmail}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.modifiedCount > 0) {
@@ -33,7 +33,7 @@ const ApprovedPremium = () => {
                             Swal.fire({
                                 position: "center",
                                 icon: "success",
-                                title: `${user.name} is premium now!`,
+                                title: `${user.RequesterName} is premium now!`,
                                 showConfirmButton: false,
                                 timer: 1500
                             });
@@ -75,13 +75,13 @@ const ApprovedPremium = () => {
                                     {index + 1}
                                 </th>
                                 <td className="px-6 py-4">
-                                    {user.name}
+                                    {user.RequesterName}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {user.email}
+                                    {user.RequesterEmail}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {user.biodataId}
+                                    {user.RequesterBiodataId}
                                 </td>
                                 <td className="px-6 py-4">
                                     {user.status === 'premium' ? "Premium" :

@@ -20,8 +20,10 @@ const BioData = () => {
             !genderFilter || biodata.gender.toLowerCase() === genderFilter.toLowerCase();
         const divisionFilterMatch =
             !divisionFilter || biodata.permanentDivision.toLowerCase() === divisionFilter.toLowerCase();
-        const ageFilterMatch =
-            !ageFilter || biodata.age === (ageFilter, 10);
+        const ageFilterMatch = !ageFilter || biodata.age == parseInt(ageFilter, 10);
+        console.log(`ageFilter: ${ageFilter}, biodata.age: ${biodata.age}, ageFilterMatch: ${ageFilterMatch}`);
+
+
 
         return genderFilterMatch && divisionFilterMatch && ageFilterMatch;
     });
